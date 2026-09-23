@@ -1,0 +1,31 @@
+name: ai_image_provenance
+description: >-
+  Inspects encoded image bytes for AI-generation and AI-editing evidence via
+  validated C2PA Content Credentials, IPTC/XMP digital source type metadata,
+  and pluggable watermark detectors.
+version: 0.1.0-dev.1
+homepage: https://github.com/abraham/ai_image_provenance_dart
+repository: https://github.com/abraham/ai_image_provenance_dart
+issue_tracker: https://github.com/abraham/ai_image_provenance_dart/issues
+topics:
+  - c2pa
+  - content-authenticity
+  - provenance
+  - ai
+  - metadata
+
+environment:
+  sdk: ^3.13.0
+
+dependencies:
+  c2pa: ^0.1.0-dev.1
+  collection: ^1.19.0
+  freezed_annotation: ^3.0.0
+
+dev_dependencies:
+  build_runner: ^2.15.1
+  freezed: ^4.0.0-dev.3
+  image: ^4.9.0
+  lints: ^6.0.0
+  test: ^1.0.0
+

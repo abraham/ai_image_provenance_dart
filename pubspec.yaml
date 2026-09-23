@@ -20,11 +20,8 @@ environment:
 dependencies:
   c2pa: ^0.1.0-dev.1
   collection: ^1.19.0
-  freezed_annotation: ^3.0.0
 
 dev_dependencies:
-  build_runner: ^2.15.1
-  freezed: ^4.0.0-dev.3
   image: ^4.9.0
   lints: ^6.0.0
   test: ^1.0.0

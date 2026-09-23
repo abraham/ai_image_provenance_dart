@@ -9,16 +9,13 @@ void main() {
   });
 
   test('rejects a non-positive maxBytes', () {
-    expect(
-      () => InspectionOptions(maxBytes: 0),
-      throwsA(isA<AssertionError>()),
-    );
+    expect(() => InspectionOptions(maxBytes: 0), throwsA(isA<ArgumentError>()));
   });
 
   test('rejects a non-positive detectorTimeout', () {
     expect(
       () => InspectionOptions(detectorTimeout: Duration.zero),
-      throwsA(isA<AssertionError>()),
+      throwsA(isA<ArgumentError>()),
     );
   });
 }

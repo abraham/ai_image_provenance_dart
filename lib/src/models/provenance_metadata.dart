@@ -1,18 +1,55 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:ai_image_provenance/src/models/evidence_trust.dart';
 import 'package:ai_image_provenance/src/models/metadata_source.dart';
 
-part 'provenance_metadata.freezed.dart';
-
 /// A single normalized metadata value extracted from an image.
-@freezed
-abstract class ProvenanceMetadata with _$ProvenanceMetadata {
+final class ProvenanceMetadata {
   /// Creates an immutable provenance metadata entry.
-  const factory ProvenanceMetadata({
-    required MetadataSource source,
-    required String fieldName,
-    required Object? value,
-    required EvidenceTrust trust,
-  }) = _ProvenanceMetadata;
+  const ProvenanceMetadata({
+    required this.source,
+    required this.fieldName,
+    required this.value,
+    required this.trust,
+  });
+
+  /// Where [value] was extracted from.
+  final MetadataSource source;
+
+  /// Normalized name of the metadata field.
+  final String fieldName;
+
+  /// The extracted value.
+  final Object? value;
+
+  /// Trust level supporting this value.
+  final EvidenceTrust trust;
+
+  /// Returns a copy with the given fields replaced.
+  ProvenanceMetadata copyWith({
+    MetadataSource? source,
+    String? fieldName,
+    Object? value,
+    EvidenceTrust? trust,
+  }) => ProvenanceMetadata(
+    source: source ?? this.source,
+    fieldName: fieldName ?? this.fieldName,
+    value: value ?? this.value,
+    trust: trust ?? this.trust,
+  );
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is ProvenanceMetadata &&
+          other.source == source &&
+          other.fieldName == fieldName &&
+          other.value == value &&
+          other.trust == trust);
+
+  @override
+  int get hashCode => Object.hash(source, fieldName, value, trust);
+
+  @override
+  String toString() =>
+      'ProvenanceMetadata(source: $source, fieldName: $fieldName, '
+      'value: $value, trust: $trust)';
 }

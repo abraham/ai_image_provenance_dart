@@ -1,0 +1,2 @@
+# Excluded from the published package (dev-only test fixtures).
+test/fixtures/c2pa_public_testfiles/

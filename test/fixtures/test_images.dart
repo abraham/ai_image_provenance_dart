@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:image/image.dart' as img;
@@ -24,3 +25,22 @@ Uint8List minimalWebpMagicBytes() => Uint8List.fromList([
 
 /// Bytes that do not match any recognized image container.
 Uint8List notAnImageBytes() => Uint8List.fromList('not an image'.codeUnits);
+
+Uint8List _readC2paPublicTestfile(String name) =>
+    File('test/fixtures/c2pa_public_testfiles/$name').readAsBytesSync();
+
+/// A real JPEG with no C2PA manifest at all, from the c2pa-org public
+/// test-file corpus (see `c2pa_public_testfiles/NOTICE.md`).
+Uint8List c2paPublicTestfileNoManifestJpegBytes() =>
+    _readC2paPublicTestfile('adobe-20220124-A.jpg');
+
+/// A real JPEG with a structurally and cryptographically valid C2PA
+/// manifest signed by a test certificate that isn't in any trust list, from
+/// the c2pa-org public test-file corpus.
+Uint8List c2paPublicTestfileValidUntrustedJpegBytes() =>
+    _readC2paPublicTestfile('adobe-20220124-C.jpg');
+
+/// A real JPEG with a C2PA manifest whose claim signature fails validation,
+/// from the c2pa-org public test-file corpus.
+Uint8List c2paPublicTestfileInvalidSignatureJpegBytes() =>
+    _readC2paPublicTestfile('adobe-20220124-E-sig-CA.jpg');
